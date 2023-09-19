@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<jsp:include page="../../include/head.jsp"></jsp:include>
 <html>
 <head>
     <title>Title</title>
@@ -31,7 +31,7 @@
                 <input class="inputage" type="text" name="age"/>
                 <label>전화번호</label>
                 <input class="inputphone" type="text" name="phone"/>
-                <button type="button" onclick="test()">데이터 넘기기</button>
+                <button type="button" onclick="test2()">데이터 넘기기</button>
 </body>
 
 </html>
@@ -39,7 +39,6 @@
 </script>
 <script>
     function test(){
-        alert("실행");
         let name = $('.inputname').val();
         let age = $('.inputage').val();
         let phone = $('.inputphone').val();
@@ -50,12 +49,40 @@
            data:{
              name : name
            },
-            success:function (result){
-                alert("success");
+            beforeSend: function(xhr){
+                var header = $("meta[name='_csrf_header']").attr('content');
+                var token = $("meta[name='_csrf']").attr('content');
+                xhr.setRequestHeader(header, token);
             },
-            error:function (){
-                alert("error");
+            success:function (result){
+
+                alert("success");
             }
         });
     }
+    function test2(){
+        $.ajax({
+
+            url: '${pageContext.request.contextPath}/orderStateRejectUpdate',
+            /* url: getContextPath() + '/orderStateUpdate', */
+            type:'POST',
+            data:{
+                order_num : "1",
+                state : "2",
+                reject_reason : "3"
+            },
+            success:function(result){
+                if(result === 1)
+                {
+                    alert("11111");
+                    location.reload();
+                }
+            },
+            error:function(){
+                alert("에러입니다");
+            }
+        });
+
+    }
+
 </script>

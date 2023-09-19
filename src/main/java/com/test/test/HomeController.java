@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Handles requests for the application home page.
@@ -46,5 +48,14 @@ public class HomeController {
 		return "dataget";
 	}
 
-	
+	@ResponseBody
+	@RequestMapping(value = { "/orderStateRejectUpdate" }, method = { RequestMethod.POST })
+	public int orderStateRejectUpdate(@RequestParam ("order_num") String order_num, @RequestParam("state") String state,
+									  @RequestParam("reject_reason") String reject_reason) {
+		System.out.println(order_num);
+		System.out.println(state);
+		System.out.println(reject_reason);
+
+		return 1;
+	}
 }
