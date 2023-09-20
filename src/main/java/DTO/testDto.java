@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class testDto {
     String name;
-    int age;
+    int password;
     String phoneNumber;
 }

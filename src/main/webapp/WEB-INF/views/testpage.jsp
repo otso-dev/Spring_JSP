@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -27,11 +28,23 @@
 <%--    </form>--%>
                 <label>이름</label>
                 <input class="inputname" type="text" name="name"/>
-                <label>나이</label>
-                <input class="inputage" type="text" name="age"/>
+                <label>비밀번호</label>
+                <input class="inputage" type="password" name="password"/>
                 <label>전화번호</label>
                 <input class="inputphone" type="text" name="phone"/>
-                <button type="button" onclick="test2()">데이터 넘기기</button>
+                <button type="button" onclick="test()">데이터 넘기기</button>
+                <div>
+                        <span id="userinfo">
+
+                        </span>
+                </div>
+<div>
+
+    <c:forEach var = "i" begin="1" end = "10">
+        ${i}
+    </c:forEach>
+</div>
+
 </body>
 
 </html>
@@ -40,26 +53,31 @@
 <script>
     function test(){
         let name = $('.inputname').val();
-        let age = $('.inputage').val();
+        let password = $('.inputage').val();
         let phone = $('.inputphone').val();
-
+        let JsonData = {
+            'name':"",
+            'password': 0,
+            'phoneNumber':""
+        };
         $.ajax({
-            url:'/test/testpage',
-            type:'post',
+            url:'${pageContext.request.contextPath}/test/testpage',
+            type:'POST',
+            async : false,
            data:{
-             name : name
+             name : name,
+             password: password,
+             phoneNumber : phone
            },
-            beforeSend: function(xhr){
-                var header = $("meta[name='_csrf_header']").attr('content');
-                var token = $("meta[name='_csrf']").attr('content');
-                xhr.setRequestHeader(header, token);
-            },
-            success:function (result){
-
-                alert("success");
+            success:function (response) {
+              JsonData = response;
+              console.log(JsonData);
             }
         });
+        return JsonData;
     }
+
+
     function test2(){
         $.ajax({
 
