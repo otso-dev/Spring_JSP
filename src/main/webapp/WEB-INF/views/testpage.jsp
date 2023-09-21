@@ -30,8 +30,6 @@
                 <input class="inputname" type="text" name="name"/>
                 <label>비밀번호</label>
                 <input class="inputage" type="password" name="password"/>
-                <label>전화번호</label>
-                <input class="inputphone" type="text" name="phone"/>
                 <button type="button" onclick="test()">데이터 넘기기</button>
                 <div>
                         <span id="userinfo">
@@ -54,12 +52,6 @@
     function test(){
         let name = $('.inputname').val();
         let password = $('.inputage').val();
-        let phone = $('.inputphone').val();
-        let JsonData = {
-            'name':"",
-            'password': 0,
-            'phoneNumber':""
-        };
         $.ajax({
             url:'${pageContext.request.contextPath}/test/testpage',
             type:'POST',
@@ -67,14 +59,11 @@
            data:{
              name : name,
              password: password,
-             phoneNumber : phone
            },
             success:function (response) {
-              JsonData = response;
-              console.log(JsonData);
+              console.log(response);
             }
         });
-        return JsonData;
     }
 
 
