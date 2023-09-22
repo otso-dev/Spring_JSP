@@ -22,4 +22,11 @@ public class TestController {
     public int postTest(testDto dto){
         return testService.testService(dto);
     }
+
+    @RequestMapping(value = "/dataget", method = RequestMethod.GET)
+    public String getData(Model model){
+//        testService.getTestModel(model);
+        System.out.println(testService.getTestModel(model));
+        return "dataget";
+    }
 }

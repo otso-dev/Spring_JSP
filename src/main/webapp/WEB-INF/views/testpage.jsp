@@ -32,9 +32,7 @@
                 <input class="inputage" type="password" name="password"/>
                 <button type="button" onclick="test()">데이터 넘기기</button>
                 <div>
-                        <span id="userinfo">
-
-                        </span>
+                      <button type="button" onclick="location='dataget'">datapage</button>
                 </div>
 <div>
 
@@ -61,7 +59,11 @@
              password: password,
            },
             success:function (response) {
-              console.log(response);
+                if(response === 1){
+                    alert("등록완료")
+                }else{
+                    alert("등록실패");
+                }
             }
         });
     }

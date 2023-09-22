@@ -2,11 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.test.test.DAO.TestDAO">
 
+    <resultMap id="userMap" type="com.test.test.Entity.TestEntity">
+        <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+    </resultMap>
+    
     <insert id="test" parameterType="com.test.test.DTO.testDto"
         useGeneratedKeys="true"
             keyProperty="userId"
     >
         INSERT INTO test_tb values(0, #{name}, #{password})
     </insert>
+    
+    <select id="getTest"  resultMap="userMap" resultType="list">
+        SELECT
+            user_id,
+            username,
+            password
+        FROM
+            test_tb
+    </select>
 
 </mapper>

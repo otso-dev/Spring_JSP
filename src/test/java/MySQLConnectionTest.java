@@ -7,8 +7,8 @@ import java.sql.DriverManager;
 public class MySQLConnectionTest {
     private static final String DRIVER ="com.mysql.jdbc.Driver";
     private static final String URL="jdbc:mysql://127.0.0.1:3308/testDB";
-    private static final String USER ="root";
-    private static final String PASSWORD ="[root]";
+    private static final String USER ="jsh";
+    private static final String PASSWORD ="1234";
 
     @Test
     public void testConnection() throws Exception{

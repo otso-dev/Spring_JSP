@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -8,20 +9,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Titledata</title>
 </head>
 <body>
-    <%
-        request.setCharacterEncoding("utf-8");
-        String name = request.getParameter("이름");
-        String age = request.getParameter("나이");
-        String phone = request.getParameter("전화번호");
-    %>
+<h1>datapage</h1>
+<c:forEach var="userList" items="${userList}">
+        <div>${userList.name}</div>
+        <div>${userList.password}</div>
+        <div>${userList.userId}</div>
+</c:forEach>
 <div>
-    <p>이름 : <%=name%></p>
-    <p>나이 : <%=age%></p>
-    <p>전화번호 : <%=phone%></p>
-    <a href="testpage">이전으로 이동하기</a>
+
 </div>
 
 </body>

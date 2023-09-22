@@ -12,7 +12,7 @@
         </property>
         <property name="username" value="root">
         </property>
-        <property name="password" value="[root]">
+        <property name="password" value="1234">
         </property>
     </bean>
 
@@ -21,12 +21,13 @@
         </property>
         <property name="configLocation" value="classpath:/mybatis-config.xml">
         </property>
-        <property name="mapperLocations" value="classpath:mappers/map.xml">
+        <property name="mapperLocations" value="classpath:mappers/*.xml">
         </property>
     </bean>
 
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
     </bean>
+
 
 </beans>
